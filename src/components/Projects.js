@@ -9,7 +9,8 @@ export const Projects = ({ activeValue = null }) => {
   const { projects } = useProjectsValue();
 
   return (
-    projects && projects.map(project => (
+    projects &&
+    projects.map((project) => (
       <li
         key={project.projectId}
         data-testid="project-action-parent"
@@ -29,9 +30,11 @@ export const Projects = ({ activeValue = null }) => {
             setActive(project.projectId);
             setSelectedProject(project.projectId);
           }}
-          onKeyDown={() => {
-            setActive(project.projectId);
-            setSelectedProject(project.projectId);
+          onKeyDown={(e) => {
+            if (e.key === 'Enter') {
+              setActive(project.projectId);
+              setSelectedProject(project.projectId);
+            }
           }}
         >
           <IndividualProject project={project} />
